@@ -41,12 +41,21 @@ public class LocalizationServiceImplTest {
     @ParameterizedTest
     @EnumSource(Country.class)
     public void locale(Country country) {
-        String expected = "Добро пожаловать";
 
-        if (country == Country.valueOf("RUSSIA")) {
-            assertEquals(expected, sut.locale(country));
-        } else {
-            assertNotEquals(expected, sut.locale(country));
+
+        switch (country) {
+            case RUSSIA:
+                assertEquals("Добро пожаловать", sut.locale(country));
+                break;
+            case USA:
+                assertEquals("Welcome", sut.locale(country));
+                break;
+            case BRAZIL:
+                assertEquals("Welcome", sut.locale(country));
+                break;
+            case GERMANY:
+                assertEquals("Welcome", sut.locale(country));
+                break;
         }
     }
 }
